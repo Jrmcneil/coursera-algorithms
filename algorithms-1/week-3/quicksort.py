@@ -26,8 +26,16 @@ def recursively_partition(array, left, right):
 
 
 # Using left most index as pivot
+# def choose_pivot(array, left, right):
+#     return array[left]
+
+
+#Using the right most index as the pivot
 def choose_pivot(array, left, right):
-    return array[left]
+    pivot = array[right]
+    array[right] = array[left]
+    array[left] = pivot
+    return pivot
 
 
 def run():
