@@ -12,14 +12,15 @@ def recursively_partition(array, left, right):
     if right - left < 1:
         return 0
 
-    pivot = choose_pivot(array, left, right)
+    assign_pivot(array, left, right)
     i = left + 1
     for j in range(left + 1, right + 1):
-        if array[j] < pivot:
+        if array[j] < array[left]:
             temp = array[i]
             array[i] = array[j]
             array[j] = temp
             i += 1
+    pivot = array[left]
     array[left] = array[i - 1]
     array[i - 1] = pivot
     left_comparisons = recursively_partition(array, left, i - 2)
@@ -28,24 +29,22 @@ def recursively_partition(array, left, right):
 
 
 # Using left most index as pivot
-# def choose_pivot(array, left, right):
-#     return array[left]
+def assign_pivot(array, left, right):
+    return
 
 
 # Using the right most index as the pivot
-# def choose_pivot(array, left, right):
+# def assign_pivot(array, left, right):
 #     swap_pivot(array, left, right)
-#     return array[left]
 
 
 # Using the median of three as the pivot
-def choose_pivot(array, left, right):
-    middle = left + int(math.ceil((right - left - 1)/2))
-    if is_median(array, middle, left, right):
-        swap_pivot(array, left, middle)
-    if is_median(array, right, middle, left):
-        swap_pivot(array, left, right)
-    return array[left]
+# def assign_pivot(array, left, right):
+#     middle = left + int(math.ceil((right - left - 1)/2))
+#     if is_median(array, middle, left, right):
+#         swap_pivot(array, left, middle)
+#     if is_median(array, right, middle, left):
+#         swap_pivot(array, left, right)
 
 
 def is_median(array, test, a, b):
